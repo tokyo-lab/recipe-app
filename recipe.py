@@ -117,6 +117,26 @@ def get_recipe(category):
     return user_choice
 
 
+def delete_recipe(category):
+    while True:
+        recipe = input("Enter a recipe to delete: ")
+        folder = Path("categories") / category
+        file_name = recipe + ".txt"
+
+        # create full file path
+        file_path = folder / file_name
+
+        if file_path.exists():
+            file_path.unlink()
+            clear_screen()
+            print(f"The recipe '{recipe}' has been deleted.")
+            break
+        else:
+            clear_screen()
+            print(f"The recipe '{recipe} does not exist")
+
+
 # get_category()
 # create_recipe("Pasta")
-get_recipe("Pasta")
+# get_recipe("Pasta")
+delete_recipe("Pasta")
