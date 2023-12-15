@@ -85,27 +85,35 @@ def create_recipe(category):
 def get_recipe(category):
     category_path = Path("categories") / category
     user_choice = ""
+
+    # Check if category exist
+    if not category_path.exists() or not category_path.is_dir():
+        print(f"No such category: {category}")
+        return
+
     # List directories using glob
     # Enumerate and list directories, creating a dictionary with indices
     recipe_dict = {
-        index: recipe.name
+        index: recipe.stem  # Use stem to get the filename without the extension
         for index, recipe in enumerate(category_path.iterdir())
         if recipe.is_file()
     }
-    # Print recipe options.
+    # Print recipe options
     for index, recipe in recipe_dict.items():
         print(f"[{index + 1}] - {recipe}")
 
     # Get user input
-    try:
-        user_choice = int(input("Select a recipe: ")) - 1
-        if user_choice in recipe_dict:
-            clear_screen()
-            print(f"You selected {recipe_dict[user_choice]}")
-        else:
-            print("Invalid selection. Please select a valid number.")
-    except ValueError:
-        print("Invalid input. Please enter a number.")
+    while True:
+        try:
+            user_choice = int(input("Select a recipe: ")) - 1
+            if user_choice in recipe_dict:
+                clear_screen()
+                print(f"You selected {recipe_dict[user_choice]}")
+                break
+            else:
+                print("Invalid selection. Please select a valid number.")
+        except ValueError:
+            print("Invalid input. Please enter a number.")
     return user_choice
 
 
