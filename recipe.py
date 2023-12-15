@@ -1,8 +1,13 @@
 from pathlib import Path
-from os import system
+import os
 
 
-def choose_category():
+def clear_screen():
+    # Clear the screen, platform independent
+    os.system("cls" if os.name == "nt" else "clear")
+
+
+def get_category():
     category_path = Path("categories")
     user_choice = ""
     # List directories using glob
@@ -20,7 +25,7 @@ def choose_category():
     try:
         user_choice = int(input("Select a category: ")) - 1
         if user_choice in category_dict:
-            system("clear")
+            clear_screen()
             print(f"You selected {category_dict[user_choice]}")
         else:
             print("Invalid selection. Please select a valid number.")
@@ -35,13 +40,15 @@ def create_category():
         folder = Path("categories") / category
 
         if folder.exists():
-            system("clear")
+            clear_screen()
             print(f"The category '{folder} already exist")
+            break
         else:
             # Create the folder
             folder.mkdir(parents=True, exist_ok=True)
-            system("clear")
+            clear_screen()
             print(f"The folder '{folder}' has been created.")
+            break
 
 
 def delete_category():
@@ -50,11 +57,34 @@ def delete_category():
         folder = Path("categories") / category
         if folder.exists():
             folder.rmdir()
-            system("clear")
+            clear_screen()
             print(f"The category '{folder}' has been deleted.")
+            break
         else:
-            system("clear")
+            clear_screen()
             print(f"The category '{folder} does not exist")
 
 
-choose_category()
+def create_recipe(category):
+    while True:
+        recipe = input("Enter a recipe to create: ")
+        folder = Path("categories") / category
+        file_name = recipe + ".txt"
+        recipe_path = folder / file_name
+
+        if recipe_path.exists():
+            clear_screen()
+            print(f"The recipe '{recipe}' already exist")
+        else:
+            # Create the recipe
+            recipe_path.write_text(recipe)
+            print(f"The recipe '{recipe}' has been created.")
+            break
+
+
+# def get_recipe(category):
+#     recipes = Path(Path.home(), "categories", category)
+
+
+# get_category()
+create_recipe("Pasta")
