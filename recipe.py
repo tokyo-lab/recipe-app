@@ -67,7 +67,7 @@ def delete_category():
 
 def create_recipe(category):
     while True:
-        recipe = input("Enter a recipe to create: ")
+        recipe = input(f"Enter a recipe to create in the {category} category: ")
         folder = Path("categories") / category
         file_name = recipe + ".txt"
         recipe_path = folder / file_name
@@ -82,9 +82,33 @@ def create_recipe(category):
             break
 
 
-# def get_recipe(category):
-#     recipes = Path(Path.home(), "categories", category)
+def get_recipe(category):
+    category_path = Path("categories") / category
+    user_choice = ""
+    # List directories using glob
+    # Enumerate and list directories, creating a dictionary with indices
+    recipe_dict = {
+        index: recipe.name
+        for index, recipe in enumerate(category_path.iterdir())
+        if recipe.is_file()
+    }
+    # Print recipe options
+    for index, recipe in recipe_dict.items():
+        print(f"[{index + 1}] - {recipe}")
+
+    # Get user input
+    try:
+        user_choice = int(input("Select a recipe: ")) - 1
+        if user_choice in recipe_dict:
+            clear_screen()
+            print(f"You selected {recipe_dict[user_choice]}")
+        else:
+            print("Invalid selection. Please select a valid number.")
+    except ValueError:
+        print("Invalid input. Please enter a number.")
+    return user_choice
 
 
 # get_category()
-create_recipe("Pasta")
+# create_recipe("Pasta")
+get_recipe("Pasta")
