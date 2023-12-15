@@ -92,7 +92,7 @@ def get_recipe(category):
         for index, recipe in enumerate(category_path.iterdir())
         if recipe.is_file()
     }
-    # Print recipe options
+    # Print recipe options.
     for index, recipe in recipe_dict.items():
         print(f"[{index + 1}] - {recipe}")
 
