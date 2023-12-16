@@ -7,26 +7,27 @@ def get_category():
     user_choice = ""
     # List directories using glob
     # Enumerate and list directories, creating a dictionary with indices
+    sorted_categories = sorted(
+        category.name for category in category_path.iterdir() if category.is_dir()
+    )
     category_dict = {
-        index: category.name
-        for index, category in enumerate(category_path.iterdir())
-        if category.is_dir()
+        index: category for index, category in enumerate(sorted_categories)
     }
     # Print category options
     for index, category in category_dict.items():
         print(f"[{index + 1}] - {category}")
 
     # Get user input
-    try:
-        user_choice = int(input("Select a category: ")) - 1
-        if user_choice in category_dict:
-            clear_screen()
-            print(f"You selected {category_dict[user_choice]}")
-        else:
-            print("Invalid selection. Please select a valid number.")
-    except ValueError:
-        print("Invalid input. Please enter a number.")
-    return user_choice
+    while True:
+        try:
+            user_choice = int(input("Select a category: "))
+            if user_choice in category_dict:
+                # clear_screen()
+                return (user_choice, category_dict[user_choice])
+            else:
+                print("Invalid selection. Please select a valid number.")
+        except ValueError:
+            print("Invalid input. Please enter a number.")
 
 
 def create_category():
@@ -60,5 +61,6 @@ def delete_category():
             print(f"The category '{folder} does not exist")
 
 
-create_category()
-get_category()
+# create_category()
+selected_index, selected_category = get_category()
+print(f"You selected index: {selected_index}, category name: {selected_category}")
