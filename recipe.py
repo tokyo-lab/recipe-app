@@ -71,6 +71,10 @@ def delete_recipe(category):
             print(f"The recipe '{recipe} does not exist")
 
 
+create_recipe("Desserts")
+create_recipe("Desserts")
+
+
 result = get_recipe("Pasta")
 
 if result is not None:

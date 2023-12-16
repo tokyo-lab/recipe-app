@@ -61,10 +61,10 @@ def delete_category():
             print(f"The category '{folder} does not exist")
 
 
-result = get_category()
+# create_category()
 
-if result is not None:
-    selected_index, selected_category = result
-    print(f"You selected index: {selected_index}, category name: {selected_category}")
-else:
-    print("Category selection was not succesful")
+result = get_category()
+print(result)
+
+
+# delete_category()
