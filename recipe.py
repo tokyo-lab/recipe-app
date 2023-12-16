@@ -43,14 +43,13 @@ def get_recipe(category):
         try:
             user_choice = int(input("Select a recipe: ")) - 1
             if user_choice in recipe_dict:
-                clear_screen()
-                print(f"You selected {recipe_dict[user_choice]}")
+                # cclear_screen()
+                return (user_choice, recipe_dict[user_choice])
                 break
             else:
                 print("Invalid selection. Please select a valid number.")
         except ValueError:
             print("Invalid input. Please enter a number.")
-    return user_choice
 
 
 def delete_recipe(category):
@@ -72,6 +71,7 @@ def delete_recipe(category):
             print(f"The recipe '{recipe} does not exist")
 
 
-category = get_recipe("Pasta")
+selected_index, selected_recipe = get_recipe("Pasta")
+print(f"You selected index: {selected_index}, recipe name: {selected_recipe}")
 # create_recipe(category)
 # delete_recipe("Pasta")
