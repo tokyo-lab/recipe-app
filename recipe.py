@@ -30,11 +30,10 @@ def get_recipe(category):
 
     # List directories using glob
     # Enumerate and list directories, creating a dictionary with indices
-    recipe_dict = {
-        index: recipe.stem  # Use stem to get the filename without the extension
-        for index, recipe in enumerate(category_path.iterdir())
-        if recipe.is_file()
-    }
+    sorted_recipes = sorted(
+        recipe.stem for recipe in category_path.iterdir() if recipe.is_file()
+    )
+    recipe_dict = {index: recipe for index, recipe in enumerate(sorted_recipes)}
     # Print recipe options
     for index, recipe in recipe_dict.items():
         print(f"[{index + 1}] - {recipe}")
