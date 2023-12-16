@@ -20,7 +20,7 @@ def get_category():
     # Get user input
     while True:
         try:
-            user_choice = int(input("Select a category: "))
+            user_choice = int(input("Select a category: ")) - 1
             if user_choice in category_dict:
                 # clear_screen()
                 return (user_choice, category_dict[user_choice])
@@ -61,6 +61,10 @@ def delete_category():
             print(f"The category '{folder} does not exist")
 
 
-# create_category()
-selected_index, selected_category = get_category()
-print(f"You selected index: {selected_index}, category name: {selected_category}")
+result = get_category()
+
+if result is not None:
+    selected_index, selected_category = result
+    print(f"You selected index: {selected_index}, category name: {selected_category}")
+else:
+    print("Category selection was not succesful")
