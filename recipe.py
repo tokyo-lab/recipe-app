@@ -5,7 +5,7 @@ from utilities import clear_screen
 def create_recipe(category):
     while True:
         recipe = input(f"Enter a recipe to create in the {category} category: ")
-        folder = Path("categories") / category
+        folder = Path("recipes") / category
         file_name = recipe + ".txt"
         recipe_path = folder / file_name
 
@@ -20,7 +20,7 @@ def create_recipe(category):
 
 
 def get_recipe(category):
-    category_path = Path("categories") / category
+    category_path = Path("recipes") / category
     user_choice = ""
 
     # Check if category exist
@@ -57,7 +57,7 @@ def get_recipe(category):
 def delete_recipe(category):
     while True:
         recipe = input("Enter a recipe to delete: ")
-        folder = Path("categories") / category
+        folder = Path("recipes") / category
         file_name = recipe + ".txt"
 
         # create full file path
@@ -73,7 +73,6 @@ def delete_recipe(category):
             print(f"The recipe '{recipe} does not exist")
 
 
-# get_category()
-# create_recipe("Pasta")
-# get_recipe("Pasta")
-delete_recipe("Pasta")
+category = get_recipe("Pasta")
+# create_recipe(category)
+# delete_recipe("Pasta")

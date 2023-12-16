@@ -3,7 +3,7 @@ from utilities import clear_screen
 
 
 def get_category():
-    category_path = Path("categories")
+    category_path = Path("recipes")
     user_choice = ""
     # List directories using glob
     # Enumerate and list directories, creating a dictionary with indices
@@ -32,7 +32,7 @@ def get_category():
 def create_category():
     while True:
         category = input("Enter a category to create: ")
-        folder = Path("categories") / category
+        folder = Path("recipes") / category
 
         if folder.exists():
             clear_screen()
@@ -49,7 +49,7 @@ def create_category():
 def delete_category():
     while True:
         category = input("Enter a category to delete: ")
-        folder = Path("categories") / category
+        folder = Path("recipes") / category
         if folder.exists():
             folder.rmdir()
             clear_screen()
@@ -58,3 +58,7 @@ def delete_category():
         else:
             clear_screen()
             print(f"The category '{folder} does not exist")
+
+
+create_category()
+get_category()
