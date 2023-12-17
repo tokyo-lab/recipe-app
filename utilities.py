@@ -7,7 +7,7 @@ def clear_screen():
 
 
 def get_actions():
-    actions = {
+    actions_dict = {
         1: "Read Recipe",
         2: "Create Recipe",
         3: "Delete Recipe",
@@ -15,5 +15,17 @@ def get_actions():
         5: "Delete Category",
         6: "End Program",
     }
+    # Print action options
+    for index, action in actions_dict.items():
+        print(f"[{index}] - {action}")
 
-    return actions
+    while True:
+        try:
+            user_choice = int(input("Select an action: "))
+            if user_choice in actions_dict:
+                return (user_choice, actions_dict[user_choice])
+                break
+            else:
+                print("Invalid selection. Enter another number")
+        except ValueError:
+            print("Invalid selection. Enter another number")
