@@ -18,6 +18,7 @@ def get_actions():
     # Print action options
     for index, action in actions_dict.items():
         print(f"[{index}] - {action}")
+    return actions_dict
 
     while True:
         try:
