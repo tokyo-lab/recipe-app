@@ -4,16 +4,17 @@ from utilities import get_actions
 # import recipe
 
 
-def get_action_number(action_name):
+def get_action_name(action_number):
     actions_dict = get_actions()
-    inverted_actions_dict = {v: k for v, k in actions_dict.items()}
-    return inverted_actions_dict.get(action_name)
+    action_name = actions_dict.get(action_number, "Key not found")
+    return action_name
 
 
 user_action = input("Select an action: ")
-action_number = get_action_number(user_action)
+print(type(user_action))
+action_name = get_action_name(user_action)
 print("user_action", user_action)
-print("action_number", action_number)
+print("action_number", action_name)
 
 # if action_number is not None:
 #     print(f"The action number for '{user_action}' is {action_number}.")

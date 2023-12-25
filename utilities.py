@@ -19,14 +19,3 @@ def get_actions():
     for index, action in actions_dict.items():
         print(f"[{index}] - {action}")
     return actions_dict
-
-    while True:
-        try:
-            user_choice = int(input("Select an action: "))
-            if user_choice in actions_dict:
-                return (user_choice, actions_dict[user_choice])
-                break
-            else:
-                print("Invalid selection. Enter another number")
-        except ValueError:
-            print("Invalid selection. Enter another number")
