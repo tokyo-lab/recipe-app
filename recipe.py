@@ -70,18 +70,10 @@ def delete_recipe(category):
             clear_screen()
             print(f"The recipe '{recipe} does not exist")
 
+    result = get_recipe(category)
 
-create_recipe("Desserts")
-create_recipe("Desserts")
-
-
-result = get_recipe("Pasta")
-
-if result is not None:
-    selected_index, selected_recipe = result
-    print(f"You selected index: {selected_index}, recipe name: {selected_recipe}")
-else:
-    print("Recipe selection was not successful.")
-
-# create_recipe(category)
-# delete_recipe("Pasta")
+    if result is not None:
+        selected_index, selected_recipe = result
+        print(f"You selected index: {selected_index}, recipe name: {selected_recipe}")
+    else:
+        print("Recipe selection was not successful.")

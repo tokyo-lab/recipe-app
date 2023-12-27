@@ -59,12 +59,3 @@ def delete_category():
         else:
             clear_screen()
             print(f"The category '{folder} does not exist")
-
-
-# create_category()
-
-result = get_category()
-print(result)
-
-
-# delete_category()
