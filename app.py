@@ -28,7 +28,7 @@ while True:
     if selected_action_number == 1:
         selected_category = recipe_category.get_category()
         print("selected category -> ", selected_category)
-        recipe.get_recipe(selected_category)
+        recipe.get_recipe(selected_category[1])
     elif selected_action_number == 2:
         selected_category = recipe_category.get_category()
         print("selected category -> ", selected_category)
