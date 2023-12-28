@@ -29,12 +29,12 @@ while True:
     if selected_action_number == 1:
         selected_category = recipe_category.get_category()
         print("selected category -> ", selected_category)
-        recipe.get_recipe(selected_category[1])
+        recipe.get_recipe(selected_category)
     # Create recipe
     elif selected_action_number == 2:
         selected_category = recipe_category.get_category()
         print("selected category -> ", selected_category)
-        recipe.create_recipe(selected_category[1])
+        recipe.create_recipe(selected_category)
     # Delete recipe
     elif selected_action_number == 3:
         print("Here are all the categories. Pick one: ")
@@ -43,6 +43,6 @@ while True:
         print("Here are all the recipes. Pick one to delete: ")
         selected_recipe = recipe.get_recipe(selected_category[1])
         print("selected_recipe -> ", selected_recipe)
-        recipe.delete_recipe(selected_category[1], selected_recipe)
+        recipe.delete_recipe(selected_category, selected_recipe)
     else:
         print("Invalid selection. Please select a valid number. ")
