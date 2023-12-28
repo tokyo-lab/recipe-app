@@ -44,7 +44,7 @@ def get_recipe(category):
             user_choice = int(input("Select a recipe: ")) - 1
             if user_choice in recipe_dict:
                 # cclear_screen()
-                return (user_choice, recipe_dict[user_choice])
+                return recipe_dict[user_choice]
                 break
             else:
                 print("Invalid selection. Please select a valid number.")
@@ -52,9 +52,8 @@ def get_recipe(category):
             print("Invalid input. Please enter a number.")
 
 
-def delete_recipe(category):
+def delete_recipe(category, recipe):
     while True:
-        recipe = input("Enter a recipe to delete: ")
         folder = Path("recipes") / category
         file_name = recipe + ".txt"
 

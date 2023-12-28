@@ -41,7 +41,8 @@ while True:
         selected_category = recipe_category.get_category()
         print("selected category -> ", selected_category)
         print("Here are all the recipes. Pick one to delete: ")
-        recipe.get_recipe(selected_category[1])
-        recipe.delete_recipe(selected_category[1])
+        selected_recipe = recipe.get_recipe(selected_category[1])
+        print("selected_recipe -> ", selected_recipe)
+        recipe.delete_recipe(selected_category[1], selected_recipe)
     else:
         print("Invalid selection. Please select a valid number. ")

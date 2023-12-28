@@ -23,7 +23,7 @@ def get_category():
             user_choice = int(input("Select a category: ")) - 1
             if user_choice in category_dict:
                 # clear_screen()
-                return (user_choice, category_dict[user_choice])
+                return category_dict[user_choice]
             else:
                 print("Invalid selection. Please select a valid number.")
         except ValueError:
