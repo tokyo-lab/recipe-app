@@ -1,6 +1,32 @@
 from pathlib import Path
 from utilities import clear_screen
 
+category_path = Path("recipes")
+
+
+def show_categories(category_path):
+    print("Categories:")
+    categories_list = []
+    counter = 1
+
+    for folder in category_path.iterdir():
+        folder_str = str(folder.name)
+        print(f"[{counter}] - {folder_str}")
+        categories_list.append(folder)
+        counter += 1
+
+    return categories_list
+
+
+def select_category(cat_list):
+    correct_choice = "x"
+    while not correct_choice.isnumeric() or int(correct_choice) not in range(
+        1, len(cat_list) + 1
+    ):
+        correct_choice = input("\nChoose a categrory: ")
+
+    return cat_list[int(correct_choice) - 1]
+
 
 def get_category():
     category_path = Path("recipes")
