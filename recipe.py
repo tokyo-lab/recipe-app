@@ -32,7 +32,7 @@ def read_recipe(recipe):
     print(Path.read_text(recipe))
 
 
-def create_recipe(category_path):
+def create_recipe(category):
     exists = False
 
     while not exists:
@@ -40,7 +40,7 @@ def create_recipe(category_path):
         recipe_name = input() + ".txt"
         print("Write your new recipe: ")
         recipe_content = input()
-        new_path = Path(category_path, recipe_name)
+        new_path = Path(category, recipe_name)
 
         if not os.path.exists(new_path):
             Path.write_text(new_path, recipe_content)
@@ -49,43 +49,7 @@ def create_recipe(category_path):
         else:
             print("That recipe already exists")
 
-    while True:
-        recipe = input(f"Enter a recipe to create in the {category} category: ")
-        folder = Path("recipes") / category
-        file_name = recipe + ".txt"
-        recipe_path = folder / file_name
 
-        if recipe_path.exists():
-            clear_screen()
-            print(f"The recipe '{recipe}' already exist")
-        else:
-            # Create the recipe
-            recipe_path.write_text(recipe)
-            print(f"The recipe '{recipe}' has been created.")
-            break
-
-
-def delete_recipe(category, recipe):
-    while True:
-        folder = Path("recipes") / category
-        file_name = recipe + ".txt"
-
-        # create full file path
-        file_path = folder / file_name
-
-        if file_path.exists():
-            file_path.unlink()
-            clear_screen()
-            print(f"The recipe '{recipe}' has been deleted.")
-            break
-        else:
-            clear_screen()
-            print(f"The recipe '{recipe} does not exist")
-
-    result = get_recipe(category)
-
-    if result is not None:
-        selected_index, selected_recipe = result
-        print(f"You selected index: {selected_index}, recipe name: {selected_recipe}")
-    else:
-        print("Recipe selection was not successful.")
+def delete_recipe(recipe):
+    Path(recipe).unlink()
+    print(f"The recipe {recipe.name} has been deleted")
