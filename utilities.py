@@ -26,20 +26,22 @@ def start():
     print(f"The recipes are in {category_path}")
     print(f"Total recipes: {count_recipes(category_path)}")
 
+    menu_choice = "x"
+    while not menu_choice.isnumeric() or int(menu_choice) not in range(1, 7):
+        print("Choose an option: ")
+        print(
+            """
+[1] - Read Recipe
+[2] - Create New Recipe
+[3] - Create New Category
+[4] - Delete Recipe
+[5] - Delete Category
+[6] - End Program
+              """
+        )
+        menu_choice = input()
 
-def get_actions():
-    actions_dict = {
-        1: "Read Recipe",
-        2: "Create Recipe",
-        3: "Delete Recipe",
-        4: "Create Category",
-        5: "Delete Category",
-        6: "End Program",
-    }
-    # Print action options
-    for index, action in actions_dict.items():
-        print(f"[{index}] - {action}")
-    return actions_dict
+    return int(menu_choice)
 
 
 def return_begining():
