@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 from utilities import clear_screen
 
@@ -27,7 +28,27 @@ def select_recipe(recipe_list):
     return recipe_list[int(selected_recipe) - 1]
 
 
-def create_recipe(category):
+def read_recipe(recipe):
+    print(Path.read_text(recipe))
+
+
+def create_recipe(category_path):
+    exists = False
+
+    while not exists:
+        print("Write the name of your recipe: ")
+        recipe_name = input() + ".txt"
+        print("Write your new recipe: ")
+        recipe_content = input()
+        new_path = Path(category_path, recipe_name)
+
+        if not os.path.exists(new_path):
+            Path.write_text(new_path, recipe_content)
+            print(f"Your recipe {recipe_name} has been created. ")
+            exists = True
+        else:
+            print("That recipe already exists")
+
     while True:
         recipe = input(f"Enter a recipe to create in the {category} category: ")
         folder = Path("recipes") / category
@@ -42,39 +63,6 @@ def create_recipe(category):
             recipe_path.write_text(recipe)
             print(f"The recipe '{recipe}' has been created.")
             break
-
-
-def get_recipe(category):
-    category_path = Path("recipes") / category
-    user_choice = ""
-
-    # Check if category exist
-    if not category_path.exists() or not category_path.is_dir():
-        print(f"No such category: {category}")
-        return
-
-    # List directories using glob
-    # Enumerate and list directories, creating a dictionary with indices
-    sorted_recipes = sorted(
-        recipe.stem for recipe in category_path.iterdir() if recipe.is_file()
-    )
-    recipe_dict = {index: recipe for index, recipe in enumerate(sorted_recipes)}
-    # Print recipe options
-    for index, recipe in recipe_dict.items():
-        print(f"[{index + 1}] - {recipe}")
-
-    # Get user input
-    while True:
-        try:
-            user_choice = int(input("Select a recipe: ")) - 1
-            if user_choice in recipe_dict:
-                # cclear_screen()
-                return recipe_dict[user_choice]
-                break
-            else:
-                print("Invalid selection. Please select a valid number.")
-        except ValueError:
-            print("Invalid input. Please enter a number.")
 
 
 def delete_recipe(category, recipe):

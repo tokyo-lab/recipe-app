@@ -34,6 +34,7 @@ if menu == 1:
     # select a recipe
     selected_recipe = recipe.select_recipe(all_recipes)
     # read recipe
+    recipe.read_recipe(selected_recipe)
     # go back to menu
 elif menu == 2:
     ### create recipe
