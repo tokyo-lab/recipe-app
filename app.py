@@ -23,10 +23,51 @@ def get_action_name():
 
 menu = 0
 category_path = Path("recipes")
-if menu == 1:
-    all_categories = recipe_category.show_categories(category_path)
-    selected_category = recipe_category.select_category(all_categories)
 
+if menu == 1:
+    ### show categories
+    all_categories = recipe_category.show_categories(category_path)
+    # select a category
+    selected_category = recipe_category.select_category(all_categories)
+    # show all recipes
+    all_recipes = recipe.show_recipes(selected_category)
+    # select a recipe
+    selected_recipe = recipe.select_recipe(all_recipes)
+    # read recipe
+    # go back to menu
+elif menu == 2:
+    ### create recipe
+     # show categories
+    all_categories = recipe_category.show_categories(category_path)
+    # select a category
+    selected_category = recipe_category.select_category(all_categories)
+    # create new recipe
+    # go back to menu
+elif menu == 3:
+    ### create a category
+    # go back to menu
+
+elif menu == 4:
+    ### delete recipe
+    # show categories
+    all_categories = recipe_category.show_categories(category_path)
+    # select a category
+    selected_category = recipe_category.select_category(all_categories)
+    # show all recipes
+    all_recipes = recipe.show_recipes(selected_category)
+    # select a recipe
+    selected_recipe = recipe.select_recipe(all_recipes)
+    # delete recipe
+    # go back to menu
+
+elif menu == 5:
+    ### delete category
+    # show categories
+    all_categories = recipe_category.show_categories(category_path)
+    # select a category
+    selected_category = recipe_category.select_category(all_categories)
+    # delete category
+    # go back to menu
 
 # while True:
 #     selected_action_number, selected_action_name = get_action_name()

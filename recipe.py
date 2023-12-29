@@ -2,6 +2,31 @@ from pathlib import Path
 from utilities import clear_screen
 
 
+def show_recipes(category_path):
+    print("These are the recipes:")
+    recipes_path = Path(category_path)
+    recipes_list = []
+    counter = 1
+
+    for recipe in recipes_path.glob("*.txt"):
+        recipe_str = str(recipe.name)
+        print(f"[{counter}] - {recipe_str}")
+        recipes_list.append(recipe)
+        counter += 1
+
+    return recipes_list
+
+
+def select_recipe(recipe_list):
+    selected_recipe = "x"
+    while not selected_recipe.isnumeric() or int(selected_recipe) not in range(
+        1, len(recipe_list) + 1
+    ):
+        selected_recipe = input("\nChoose a recipe: ")
+
+    return recipe_list[int(selected_recipe) - 1]
+
+
 def create_recipe(category):
     while True:
         recipe = input(f"Enter a recipe to create in the {category} category: ")
