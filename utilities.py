@@ -27,9 +27,6 @@ def start():
     print(f"Total recipes: {count_recipes(category_path)}")
 
 
-start()
-
-
 def get_actions():
     actions_dict = {
         1: "Read Recipe",
@@ -43,3 +40,10 @@ def get_actions():
     for index, action in actions_dict.items():
         print(f"[{index}] - {action}")
     return actions_dict
+
+
+def return_begining():
+    return_choice = "x"
+
+    while return_choice.lower() != "b":
+        return_choice = input("\nPress 'b' to return home")

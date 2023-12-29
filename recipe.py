@@ -1,6 +1,5 @@
 import os
 from pathlib import Path
-from utilities import clear_screen
 
 
 def show_recipes(category_path):
